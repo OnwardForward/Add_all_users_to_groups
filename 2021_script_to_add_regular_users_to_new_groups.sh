@@ -26,11 +26,11 @@ tail -1 /etc/group
 # We will use awk command to filter the /etc/passwd file
 # We will extract from the third field, the user id superior and equal to 1000
 # Assuming that the regular user's ids start at 1000. 
-# From this list we will exclude the user nfsnobody by using the username extract from the first field.
+# From this list we will exclude the user nobody by using the username extract from the first field.
 # We excule nfsnobody or nobody (if this is the case for your server) because it is a systenm user with an id superior to 1000
 # From this list, we will extract the first field that constitute the correspondant usernames with the argument {print $1}
 #n The result will be redirected to the file call user_name to be created since it not exist
-awk -F: '$3 >= 1000 && $1 != "nfsnobody" {print $1}' /etc/passwd >> user_name
+awk -F: '$3 >= 1000 && $1 != "nobody" {print $1}' /etc/passwd >> user_name
 The following for loop will go through the list of usernames obtained and add them the groups created accordingly
 for USER_NAME in $(cat user_name);
 do
